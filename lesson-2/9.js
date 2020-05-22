@@ -7,13 +7,22 @@
 
 ////////////////// Решение //////////////////
 
-const arr = [1, 2, 3, 4, 5, 6];
-let reversedArr = [];
-let i = arr.length - 1;
-let j = 0;
-while (arr[i]) {
-  reversedArr[j] = arr[i];
-  i--;
-  j++;
+
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i < arr.length; i++){
+  let min = arr[i];
+  let num = i;
+
+  for (let j = i + 1; j < arr.length; j++){
+    if (arr[j]>min){
+      min = arr[j];
+      num = j;
+    }
+  }
+  
+  arr[num] =  arr[i];
+  arr[i] = min;
 }
-console.log(reversedArr);
+
+console.log(arr);
