@@ -16,6 +16,10 @@ const PRICE = '$120';
 // Решение
 
 function extractCurrencyValue(price) {
+  if(typeof price !== 'string') {
+    return null;
+  }
+  
   let arr = price.split('');
   let num = null;
 
