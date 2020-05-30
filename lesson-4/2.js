@@ -32,11 +32,13 @@ const person = {
 Object.defineProperties(person, {
   rate: {
     configurable: false,
-    enumerable: false
+    enumerable: false,
+    writable: true
   },
   salary: {
     configurable: false,
-    enumerable: false
+    enumerable: false,
+    writable: true
   }
 });
 
