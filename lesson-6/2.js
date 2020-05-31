@@ -22,26 +22,24 @@ const array = ['Доброе утро!', 'Добрый вечер!', 3, 512, '#'
 
 function filter(array, callback) {
 
+    if (!Array.isArray(array)) {
+        throw new Error('array should be a Array!');
+    }
+
+    if (typeof callback !== 'function') {
+        throw new Error('callback should be a Function!');
+    }
+
     try {
-
-        if (!Array.isArray(array)) {
-            throw new Error('array should be a Array!');
-        }
-
-        if (typeof callback !== 'function') {
-            throw new Error('callback should be a Function!');
-        }
-
+        const newArr = [];
         for(let i = 0; i < array.length; i++) {
             let result = callback(array[i], i, array);
-            const copy = [];
-
             if(result) {
-                copy.push(array[i]);
-                
-                return copy;
+                newArr.push(array[i]);
             }
         }
+        
+        return newArr;
 
     } catch(e) {
         return e.message;

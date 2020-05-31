@@ -22,16 +22,15 @@ const array = [1, 2, 3];
 
 function forEach(array, callback) {
 
+    if (!Array.isArray(array)) {
+        throw new Error('array should be a Array!');
+    }
+
+    if (typeof callback !== 'function') {
+        throw new Error('callback should be a Function!');
+    }
+
     try {
-
-        if (!Array.isArray(array)) {
-            throw new Error('array should be a Array!');
-        }
-
-        if (typeof callback !== 'function') {
-            throw new Error('callback should be a Function!');
-        }
-
         for(let i = 0; i < array.length; i++) {
             callback(array[i], i, array);
         }

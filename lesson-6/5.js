@@ -21,27 +21,23 @@ const INITIAL_ACCUMULATOR = 6;
 
 // Решение
 
-function reduce(array, callback, accumulator) {
+function reduce(array, callback, initialAccum) {
 
+    if (!Array.isArray(array)) {
+        throw new Error('array should be a Array!');
+    }
+
+    if (typeof callback !== 'function') {
+        throw new Error('callback should be a Function!');
+    }
+
+    let accumulator = initialAccum || array[0];
+    
     try {
-
-        if (!Array.isArray(array)) {
-            throw new Error('array should be a Array!');
+        for (let i = 0; i < array.length; i++) {  
+            accumulator = callback(accumulator, array[i], i, array);
         }
-
-        if (typeof callback !== 'function') {
-            throw new Error('callback should be a Function!');
-        }
-       
-        for(let i = 0; i < array.length; i++) {
-            if(typeof accumulator !== 'number') {
-                accumulator = array[0];
-            }
-
-            callback(accumulator, array[i], i, array);      
-            accumulator += array[i];      
-        }
-
+        
         return accumulator;
 
     } catch(e) {
