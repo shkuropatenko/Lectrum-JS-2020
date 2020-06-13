@@ -37,9 +37,10 @@ function inspect(paramArr) {
         throw new Error('Should be Array!');
     }
   
-    let hasString = paramArr.every(word => typeof word !== 'string');
+    //  вот эта проверка не нужна hasString = paramArr.every(word => typeof word !== 'string'); и лучше если вы и хотите такую проверку написать лучше её написать так, wrongStringFormat или что-то вроде этого
+    let wrongStringFormat = paramArr.every(word => typeof word !== 'string');
     
-    if(hasString) {
+    if(wrongStringFormat) {
         return [];
     }
     

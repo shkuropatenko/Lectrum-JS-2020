@@ -21,7 +21,7 @@ function createArray(value, quantity) {
     throw new Error('quantity should be a number!');
   }
 
-  let newArr = [];
+  const newArr = [];
   let n = 0;
   while(n < quantity) {
     newArr.push(value);
