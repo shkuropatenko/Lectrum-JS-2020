@@ -16,6 +16,7 @@
 
 // Решение
 
+// first option
 function shallowMerge(obj1, obj2) {
   const newObj = {};
   
@@ -33,6 +34,17 @@ function shallowMerge(obj1, obj2) {
     
   return newObj;
 }
+
+// second option
+function shallowMerge(obj1, obj2 ) {
+  const mergedObj = { ...obj1, ...obj2 };
+
+  Object.defineProperties(mergedObj, Object.getOwnPropertyDescriptors(obj1));
+  Object.defineProperties(mergedObj, Object.getOwnPropertyDescriptors(obj2));
+
+  return mergedObj;
+}
+
 
 const user = { firstName: 'Marcus', lastName: 'Kronenberg' };
 const userData = { job: 'developer', country: 'Germany', lastName: 'Schmidt' };
