@@ -15,15 +15,27 @@
 
 class Stringer {
   reverse(string) {
-      return string.split('').reverse().join('');
+    if(typeof string !== 'string') {
+      throw new Error('Should be a string!')
+    }
+    
+    return string.split('').reverse().join('');
   }
 
   uppercaseFirst(string) {
-      return string[0].toUpperCase() + string.slice(1);
+    if(typeof string !== 'string') {
+      throw new Error('Should be a string!')
+    }
+
+    return string[0].toUpperCase() + string.slice(1);
   }
 
   uppercaseAll(string) {
-      return string.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
+    if(typeof string !== 'string') {
+      throw new Error('Should be a string!')
+    }
+
+    return string.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
   }
 }
 
