@@ -18,34 +18,54 @@
 // Решение
 
 function postpone(start, end, delay) {
+    if (typeof start !== 'number' || typeof end !== 'number' || typeof delay !== 'number') {
+        throw new Error('Params should be a number');
+    }
 
-  let arr = arguments;
-  for (let value of arr) {
-      if (typeof value !== 'number') {
-          throw new Error ('Should be number!');
-      }
-  }
-  
-  let timerId = setTimeout( () => {
-      if (start < end) {
-          for(let i = start; i <= end; i++) {
-              console.log(i);
-          }
-      } else {
-          for(start; start >= end; start--) {
-             console.log(start)
-          }
-      }
-  }, delay);
+    if(start < end) {
+        for(let i = start; i <= end; ++i) {
+            setDelay(i);
+        }
+
+        function setDelay(i) {
+
+            setTimeout(function(){
+            console.log(i);
+            }, delay * i);
+
+        }
+    }
+
+    if(start > end) {
+        setTimeout(() => {
+
+            for(let i = start, timer = 0; i >= end; i--) {
+                setDelay(i, timer++);
+            }
+
+            function setDelay(i, timer) {
+        
+                setTimeout(function(){
+                    console.log(i);
+                
+                }, delay * timer);
+
+            }
+
+        }, (start + end) * delay);
+        
+    }
 }
 
-postpone(1, 3, 1000);
-// 1
-// 2
-// 3
-postpone(3, 1, 1000);
-// 3
-// 2
-// 1
-
-exports.postpone = postpone;
+try {
+    postpone(1, 3, 1000);
+    // 1
+    // 2
+    // 3
+    postpone(3, 1, 1000);
+    // 3
+    // 2
+    // 1
+} catch(error) {
+    console.log(`${error.name}: ${error.message}`);
+}
