@@ -21,6 +21,10 @@
   margin-bottom: 24px;
   cursor: pointer;
   z-index: 1000;
+
+  &.active {
+    background: #ccc;
+  }
 }
 
 .left__company img {
