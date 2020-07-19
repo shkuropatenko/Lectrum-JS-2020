@@ -1,5 +1,6 @@
 node_modules
 dev
+build
 builds
 .DS_Store
 ._.DS_Store
@@ -9,6 +10,9 @@ builds
 
 .idea
 npm-debug.log
+yarn-error.log
+.yarnclean
+.vscode
 phantomjsdriver.log
 /nbproject/*
 
