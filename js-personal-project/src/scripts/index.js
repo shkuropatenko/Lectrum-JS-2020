@@ -8,6 +8,7 @@ let payment = {};
 const companies = document.getElementById('companies');
 const meters = document.getElementById('meters');
 const items = companies.querySelectorAll('.left__company');
+const formElement = document.getElementById('form');
 
 items.forEach((element) => {
     element.addEventListener('click', (event) => {
@@ -21,10 +22,39 @@ items.forEach((element) => {
         element.className = 'left__company active';
 
         payment.id = id;
-        
-        console.log(payment);
+
+
+        const btn = formElement.querySelector('.form__footer .btn');
+
+        btn.onclick = (event) => {
+            event.preventDefault();  
+
+            const previous = payment.previous;
+            const current = payment.current;
+              
+            for(const key in tarifs) {
+                if (id === key) {
+                    console.log(payment);
+                    payment.total = (current - previous) * tarifs[key];
+                    payments[id] = payment;
+                    
+                    payment = {};
+
+                    console.log(payment);
+                    console.log(payments);
+                }
+            }    
+        };
     });
 });
+
+let btnClear = formElement.querySelector('.form__footer .btn-outline');
+btnClear.onclick = (event) => {
+    event.preventDefault();  
+    
+    payments = [];
+    console.log(payments); 
+};
 
 meters.onchange = (event) => {
     const { value } = event.target;
@@ -32,19 +62,15 @@ meters.onchange = (event) => {
     console.log(payment);
 };
 
-const formElement = document.getElementById('form');
-// console.log(formElement);
+
 let formInputs = formElement.getElementsByTagName('input');
-// console.log(asd);
+
 formInputs.forEach((element) => {
     element.onchange = (event) => {
         const { value } = event.target;
         const previous = event.target.getAttribute('id') === 'previous';
         const current = event.target.getAttribute('id') === 'current';
         const currentOnDate = event.target.getAttribute('id') === 'payment';
-
-        // console.log(value);
-        // console.log(currentOnDate);
 
         if (previous) {
             payment.previous = value;
@@ -59,45 +85,7 @@ formInputs.forEach((element) => {
         }
 
        console.log(payment);
-
-        // if (previous) {
-        //     console.log(previous);
-        // }
-
-        // items.forEach((element) => {
-        //     element.className = 'left__company';
-        // });
-
-        // element.className = 'left__company active';
-
-        // payment.id = id;
     };
 });
 
-formElement.onchange = (event) => {
-  
-    // let form = event.target.closest('form'),
-    //     name = form.find('input[type="text"]').val();
-
-    //     if (form.hasAttributeNS('input[type="text"]')) {
-    //   console.log(123);
-    //  }
-    
-
-    //  for(let i = 0; i < asd.length; i++) {
-    //     const { value } = event.target;
-    //     console.log(asd[i].getAttribute('id'));
-    //     console.log(value);
-
-    //     payment.previous =
-    //     payment.current =
-    //     payment.currentOnDate =
-    // }
-
-    // $.ajax({
-    //     url: form.attr('action'),
-    //     type: form.attr('method'),
-    //    ...
-    // });
-};
 
