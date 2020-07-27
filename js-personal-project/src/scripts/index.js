@@ -50,8 +50,6 @@ items.forEach((element) => {
 
 let btnClear = formElement.querySelector('.form__footer .btn-outline');
 btnClear.onclick = (event) => {
-    event.preventDefault();  
-    
     payments = [];
     console.log(payments); 
 };
