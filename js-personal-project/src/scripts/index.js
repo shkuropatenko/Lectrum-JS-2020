@@ -20,12 +20,9 @@ items.forEach((element) => {
         });
 
         element.className = 'left__company active';
-
         payment.id = id;
 
-
         const btn = formElement.querySelector('.form__footer .btn');
-
         btn.onclick = (event) => {
             event.preventDefault();  
 
@@ -37,9 +34,7 @@ items.forEach((element) => {
                     console.log(payment);
                     payment.total = (current - previous) * tarifs[key];
                     payments[id] = payment;
-                    
                     payment = {};
-
                     console.log(payment);
                     console.log(payments);
                 }
@@ -59,7 +54,6 @@ meters.onchange = (event) => {
     payment.meterId = value;
     console.log(payment);
 };
-
 
 let formInputs = formElement.getElementsByTagName('input');
 
@@ -85,5 +79,3 @@ formInputs.forEach((element) => {
        console.log(payment);
     };
 });
-
-
