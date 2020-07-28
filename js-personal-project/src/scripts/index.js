@@ -21,27 +21,31 @@ items.forEach((element) => {
 
         element.className = 'left__company active';
         payment.id = id;
-
-        const btn = formElement.querySelector('.form__footer .btn');
-        btn.onclick = (event) => {
-            event.preventDefault();  
-
-            const previous = payment.previous;
-            const current = payment.current;
-              
-            for(const key in tarifs) {
-                if (id === key) {
-                    console.log(payment);
-                    payment.total = (current - previous) * tarifs[key];
-                    payments[id] = payment;
-                    payment = {};
-                    console.log(payment);
-                    console.log(payments);
-                }
-            }    
-        };
     });
 });
+
+const btn = formElement.querySelector('.form__footer .btn');
+btn.onclick = (event) => {
+    event.preventDefault();  
+
+    const id = event.target.getAttribute('data-id');
+    const previous = payment.previous;
+    const current = payment.current;
+        
+    for(const key in tarifs) {
+        if (id === key) {
+            console.log(payment);
+            payment.total = (current - previous) * tarifs[key];
+            payments[id] = payment;
+            payment = {};
+            console.log(payment);
+            console.log(payments);
+        }
+    }    
+    
+    console.log(payment);
+    console.log(payments);
+};
 
 let btnClear = formElement.querySelector('.form__footer .btn-outline');
 btnClear.onclick = (event) => {
